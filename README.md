@@ -13,8 +13,9 @@
 
 ## 简介
 
-[vuetify-admin](https://github.com/chenglong-do/vuetify-admin) 是一个后台前端解决方案，它基于 [vue](https://github.com/vuejs/vue) 和 [vuetify](https://github.com/vuetifyjs/vuetify)实现，[vuetify](https://github.com/vuetifyjs/vuetify)的目标是为用户提供使用 [Material Design specification](https://material.io/guidelines/) 构建丰富且引人入胜的 web 应用程序所需的一切。
-持续更新中……
+[vuetify-admin](https://github.com/chenglong-do/vuetify-admin) 是一个后台前端解决方案，它基于 [vue](https://github.com/vuejs/vue) 和 [vuetify](https://github.com/vuetifyjs/vuetify)实现，[vuetify](https://github.com/vuetifyjs/vuetify)的目标是为用户提供使用 [Material Design specification](https://material.io/guidelines/) 构建丰富且引人入胜的 web 应用程序所需的一切。参照了 [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 的一些写法，感谢！
+
+目标是做一个完整的用户权限管理基础模块，有时间就持续更新…
 
 ## 功能
 
