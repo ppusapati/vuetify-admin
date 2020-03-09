@@ -1,3 +1,6 @@
+<p align="center">
+  <img width="320" src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png">
+</p>
 # vuetify-admin
 
 ## Project setup
