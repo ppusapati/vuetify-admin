@@ -17,6 +17,13 @@
 
 目标是做一个完整的用户权限管理基础模块，有时间就持续更新…
 
+## 预览
+
+<p align="center">
+  <img width="900" src="https://github.com/chenglong-do/vuetify-admin/blob/master/screenshots/preview01.png">
+  <img width="900" src="https://github.com/chenglong-do/vuetify-admin/blob/master/screenshots/preview02.png">
+</p>
+
 ## 功能
 
 
