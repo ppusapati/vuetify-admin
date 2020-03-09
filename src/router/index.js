@@ -16,6 +16,16 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/401',
+    component: () => import('@/views/error/Deny'),
+    hidden: true
+  },
+  {
+    path: '/500',
+    component: () => import('@/views/error/Error'),
+    hidden: true
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',

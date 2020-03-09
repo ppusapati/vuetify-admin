@@ -10,9 +10,9 @@
           <v-icon>{{ onlyOneChild.meta.icon||(item.meta&&item.meta.icon) }}</v-icon>
         </v-list-item-action>
         <v-list-item-content>
-          <v-list-item-subtitle>
+          <v-list-item-title>
             {{ onlyOneChild.meta.title }}
-          </v-list-item-subtitle>
+          </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </template>
