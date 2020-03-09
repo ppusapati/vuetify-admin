@@ -9,7 +9,7 @@
           <h1>500</h1>
           <h2 class="my-3 headline">Sorry, the server is down.</h2>
           <div>
-            <v-btn color="primary" @click="goHome">Go Home</v-btn>
+            <v-btn color="primary" @click="back2Home">Back To Home</v-btn>
           </div>
         </div>
       </v-layout>
@@ -20,7 +20,7 @@
 <script>
 export default {
   methods: {
-    goHome() {
+    back2Home() {
       this.$router.push({ path: '/' });
     }
   }

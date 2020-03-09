@@ -18,7 +18,7 @@
     </v-btn>
     <v-btn icon>
       <v-badge color="red" overlap>
-        <span slot="badge">3</span>
+        <span slot="badge">5</span>
         <v-icon medium>fw fa-bell</v-icon>
       </v-badge>
     </v-btn>
@@ -71,15 +71,13 @@ export default {
         {
           icon: 'fw fa-user',
           href: '#',
-          // title: this.$t('toolbar.profile'),
-          title: '资料',
+          title: this.$t('toolbar.profile'),
           click: this.handleProfile
         },
         {
           icon: 'fw fa-arrows-alt',
           href: '#',
-          // title: this.$t('toolbar.logout'),
-          title: '登出',
+          title: this.$t('toolbar.logout'),
           click: this.handleLogout
         }
       ]
