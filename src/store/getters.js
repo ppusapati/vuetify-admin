@@ -1,6 +1,9 @@
 const getters = {
   miniVariant: state => state.app.miniVariant,
   showSettings: state => state.settings.showSettings,
+  theme: state => state.settings.theme,
+  logo: state => state.settings.logo,
+  lang: state => state.settings.lang,
   device: state => state.app.device,
   token: state => state.user.token,
   avatar: state => state.user.userInfo.avatar,

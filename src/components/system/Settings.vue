@@ -161,12 +161,13 @@ export default {
   watch: {
     themeColor: {
       handler(val) {
+        const theme = this.colors[val].base;
         if (this.$vuetify.theme.dark) {
           // Dark theme
-          this.$vuetify.theme.themes.dark.primary = this.colors[val].base;
+          this.$vuetify.theme.themes.dark.primary = theme;
         } else {
           // Light theme
-          this.$vuetify.theme.themes.light.primary = this.colors[val].base;
+          this.$vuetify.theme.themes.light.primary = theme;
         }
       },
       immediate: true
@@ -178,7 +179,7 @@ export default {
     },
     i18nBarOption: {
       handler(lang) {
-        if (this.$i18n.locale !== lang) { this.$i18n.locale = lang }
+        if (this.$i18n.locale !== lang && lang) { this.$i18n.locale = lang }
       }
     }
   }
