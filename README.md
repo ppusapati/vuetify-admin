@@ -22,6 +22,7 @@
 <p align="center">
   <img width="900" src="https://github.com/chenglong-do/vuetify-admin/blob/master/screenshots/preview01.png">
   <img width="900" src="https://github.com/chenglong-do/vuetify-admin/blob/master/screenshots/preview02.png">
+  <img width="900" src="https://github.com/chenglong-do/vuetify-admin/blob/master/screenshots/preview03.png">
 </p>
 
 ## 功能
