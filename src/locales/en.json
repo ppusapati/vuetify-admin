@@ -47,7 +47,11 @@
       "pm": "PM"
     }
   },
+  "toolbar.appName": "Vuetify Admin",
   "toolbar.profile": "Profile",
   "toolbar.settings": "Settings",
-  "toolbar.logout": "Logout"
+  "toolbar.logout": "Logout",
+  "settings.title": "Settings",
+  "settings.colorOption": "Color Option",
+  "settings.language": "Language"
 }

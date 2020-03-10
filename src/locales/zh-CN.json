@@ -47,7 +47,11 @@
       "pm": "PM"
     }
   },
+  "toolbar.appName": "Vuetify 后台管理",
   "toolbar.profile": "资料",
   "toolbar.settings": "设置",
-  "toolbar.logout": "登出"
+  "toolbar.logout": "登出",
+  "settings.title": "设置",
+  "settings.colorOption": "主题颜色",
+  "settings.language": "语言"
 }

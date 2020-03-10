@@ -2,14 +2,14 @@
   <v-app-bar
     :clipped-left="$vuetify.breakpoint.lgAndUp"
     app
-    color="blue darken-3"
+    color="primary darken-3"
     dark
   >
     <v-toolbar-title
       style="width: 256px"
       class="ml-0 pl-4"
     >
-      <span class="hidden-sm-and-down">Vuetify Admin</span>
+      <span class="hidden-sm-and-down"> {{ $t('toolbar.appName') }}</span>
     </v-toolbar-title>
     <v-app-bar-nav-icon @click.stop="toggleSideBar" />
     <v-spacer />
@@ -35,7 +35,7 @@
             item
           >
             <v-img
-              src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
+              src="@/assets/logo.svg"
               alt="Vuetify"
             /></v-avatar>
         </v-btn>
@@ -51,7 +51,7 @@
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
-              {{ item.title }}
+              {{ $t(item.title) }}
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -71,13 +71,19 @@ export default {
         {
           icon: 'fw fa-user',
           href: '#',
-          title: this.$t('toolbar.profile'),
+          title: 'toolbar.profile',
           click: this.handleProfile
+        },
+        {
+          icon: 'fw fa-cog',
+          href: '#',
+          title: 'toolbar.settings',
+          click: this.handleSettings
         },
         {
           icon: 'fw fa-arrows-alt',
           href: '#',
-          title: this.$t('toolbar.logout'),
+          title: 'toolbar.logout',
           click: this.handleLogout
         }
       ]
@@ -86,14 +92,12 @@ export default {
   computed: {
     ...mapGetters([
       'miniVariant',
-      'avatar',
-      'device'
+      'showSettings',
+      'device',
+      'avatar'
     ]),
     key() {
       return this.$route.path;
-    },
-    toolbarColor() {
-      return this.$vuetify.options.extra.mainNav;
     }
   },
   methods: {
@@ -108,11 +112,20 @@ export default {
     },
     handleProfile() {
       console.log('handleProfile');
+    },
+    handleSettings() {
+      this.$vuetify.goTo(0);
+      this.$store.dispatch('settings/changeSetting', {
+        key: 'showSettings',
+        value: true
+      });
     }
   }
 };
 </script>
 
 <style scoped>
-
+  .v-toolbar__title {
+    font-weight: 600;
+  }
 </style>
