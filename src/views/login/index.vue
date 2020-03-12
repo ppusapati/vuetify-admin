@@ -1,15 +1,22 @@
 <template>
   <v-app class="split-bg primary">
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout align-center justify-center>
-          <v-flex xs12 sm8 md4 lg4>
-            <v-card class="pa-3">
+      <v-container fluid class="fill-height">
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col
+            cols="12"
+            sm="8"
+            md="4"
+          >
+            <v-card class="elevation-12">
               <v-card-text>
                 <div class="layout column align-center">
                   <img src="@/assets/logo.svg" alt="Vuetify Admin" width="120" height="120">
                   <h1 class="flex my-4 primary--text">
-                    Vuetify Admin
+                    {{ $t('toolbar.appName') }}
                   </h1>
                 </div>
                 <v-form ref="loginForm" v-model="valid">
@@ -69,8 +76,8 @@
                 </v-btn>
               </v-snackbar>
             </v-card>
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
       </v-container>
     </v-content>
   </v-app>

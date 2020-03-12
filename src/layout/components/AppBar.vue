@@ -14,12 +14,12 @@
     <v-app-bar-nav-icon @click.stop="toggleSideBar" />
     <v-spacer />
     <v-btn icon @click="handleFullScreen()">
-      <v-icon>fw fa-expand</v-icon>
+      <v-icon>fa-fw fa-expand</v-icon>
     </v-btn>
     <v-btn icon>
       <v-badge color="red" overlap>
         <span slot="badge">5</span>
-        <v-icon medium>fw fa-bell</v-icon>
+        <v-icon medium>fa-fw fa-bell</v-icon>
       </v-badge>
     </v-btn>
 
@@ -69,19 +69,19 @@ export default {
     return {
       items: [
         {
-          icon: 'fw fa-user',
+          icon: 'fa-fw fa-user',
           href: '#',
           title: 'toolbar.profile',
           click: this.handleProfile
         },
         {
-          icon: 'fw fa-cog',
+          icon: 'fa-fw fa-cog',
           href: '#',
           title: 'toolbar.settings',
           click: this.handleSettings
         },
         {
-          icon: 'fw fa-arrows-alt',
+          icon: 'fa-fw fa-arrows-alt',
           href: '#',
           title: 'toolbar.logout',
           click: this.handleLogout

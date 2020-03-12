@@ -6,13 +6,13 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-container>
-      <v-layout column>
-        <v-flex>
+      <v-row column>
+        <v-col>
           <v-subheader class="px-1 my-2">
             {{ $t('settings.colorOption') }}
           </v-subheader>
           <div class="color-option">
-            <v-layout wrap>
+            <v-row wrap>
               <label
                 v-for="(option, index) in themeColorOptions"
                 :key="index"
@@ -23,12 +23,12 @@
                   <span class="overlay">
                     <v-icon style="color: white;">fa-check</v-icon>
                   </span>
-                  <span class="color-option--item--header sideNav" :class="option.value.sideNav" />
-                  <span class="color-option--item--header mainNav" :class="option.value.mainNav" />
+                  <span class="color-option--item--header sideNav darken-3" :class="option.value.sideNav" />
+                  <span class="color-option--item--header mainNav darken-3" :class="option.value.mainNav" />
                   <span class="sideMenu" :class="option.value.sideMenu" />
                 </span>
               </label>
-            </v-layout>
+            </v-row>
           </div>
           <!--          <div class="theme-options">-->
           <!--            <v-subheader class="px-1 my-2">-->
@@ -62,8 +62,8 @@
               </v-btn-toggle>
             </div>
           </div>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
