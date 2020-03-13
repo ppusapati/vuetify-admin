@@ -53,5 +53,14 @@
   "toolbar.logout": "Logout",
   "settings.title": "Settings",
   "settings.colorOption": "Color Option",
-  "settings.language": "Language"
+  "settings.language": "Language",
+  "common": {
+    "confirm": {
+      "title": "Warning"
+    },
+    "button": {
+      "accept": "Accept",
+      "discard": "Discard"
+    }
+  }
 }

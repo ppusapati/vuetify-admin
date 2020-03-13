@@ -5,10 +5,7 @@
         <v-btn class="ma-1" small color="primary">
           <v-icon dark dense>fa-plus</v-icon>
         </v-btn>
-        <v-btn class="ma-1" small color="success" :disabled="!active[0]">
-          <v-icon dark dense>fa-edit</v-icon>
-        </v-btn>
-        <v-btn class="ma-1" small color="error" :disabled="!active[0]">
+        <v-btn class="ma-1" small color="error" :disabled="!active[0] || (!!active[0] && Array.isArray(active[0].children) && active[0].children.length > 0)" @click="handleRemove">
           <v-icon dark dense>fa-minus</v-icon>
         </v-btn>
       </v-col>
@@ -22,7 +19,6 @@
           transition
           rounded
           :active.sync="active"
-          :open.sync="open"
           return-object
           item-key="id"
           item-text="title"
@@ -36,14 +32,21 @@
               {{ typeIcons[item.type] }}
             </v-icon>
           </template>
-        </v-treeview>
+          <template v-slot:label="{ item }">
+            <template v-if="$te(item.name)">
+              {{ $t(item.name) }}
+            </template>
+            <template v-else>
+              {{ item.title }}
+            </template>
+          </template></v-treeview>
       </v-col>
       <v-col>
         <v-card
           class="mx-auto"
         >
           <v-card-title color="primary darken-3">
-            修改菜单
+            {{ formTitle }}
           </v-card-title>
           <v-form v-model="valid">
             <v-container>
@@ -56,6 +59,7 @@
                     v-model="form.title"
                     label="标题"
                     required
+                    :readonly="readonly"
                   />
                 </v-col>
                 <v-col
@@ -66,6 +70,7 @@
                     v-model="form.parentId"
                     label="父级"
                     required
+                    :readonly="readonly"
                   />
                 </v-col>
 
@@ -79,6 +84,7 @@
                     item-text="label"
                     item-value="value"
                     label="类型"
+                    :readonly="readonly"
                     return-object
                   />
                 </v-col>
@@ -92,6 +98,7 @@
                     v-model="form.icon"
                     label="图标"
                     :append-icon="form.icon"
+                    :readonly="readonly"
                   />
                 </v-col>
                 <v-col
@@ -102,6 +109,7 @@
                     v-model="form.sort"
                     label="排序"
                     required
+                    :readonly="readonly"
                   />
                 </v-col>
                 <v-col
@@ -111,6 +119,7 @@
                   <v-text-field
                     v-model="form.component"
                     label="组件路径"
+                    :readonly="readonly"
                     required
                   />
                 </v-col>
@@ -123,6 +132,7 @@
                   <v-text-field
                     v-model="form.path"
                     label="路由路径"
+                    :readonly="readonly"
                     append-icon="fa-place"
                   />
                 </v-col>
@@ -139,10 +149,13 @@
           </v-form>
 
           <v-card-actions>
-            <v-btn class="ma-1" small dark color="success">
+            <v-btn v-if="formMode === 'view' && !!active[0]" class="ma-1" small dark color="success" @click="handleEditMode">
+              <v-icon left dark dense>fw fa-edit</v-icon>编辑菜单
+            </v-btn>
+            <v-btn v-if="formMode === 'edit'" class="ma-1" small dark color="success">
               <v-icon left dark dense>fw far fa-check-circle</v-icon>提交
             </v-btn>
-            <v-btn class="ma-1" small dark color="error">
+            <v-btn v-if="formMode === 'edit'" class="ma-1" small dark color="error" @click="handleCancelEditMode">
               <v-icon left dark dense>fw far fa-times-circle</v-icon>取消
             </v-btn>
           </v-card-actions>
@@ -153,11 +166,29 @@
 </template>
 
 <script>
+
+const defaultMenuFormData = {
+  id: null,
+  parentId: null,
+  sort: 1,
+  name: null,
+  title: null,
+  type: 'catalog',
+  icon: null,
+  path: null,
+  component: 'Layout',
+  redirect: null,
+  keepAlive: null,
+  code: null,
+  hidden: false,
+  root: false,
+  noCache: false
+};
+
 export default {
   name: 'Menu',
   data: () => ({
     active: [],
-    open: [],
     typeIcons: {
       menu: 'fa-stream',
       button: 'fa-toggle-off',
@@ -277,42 +308,45 @@ export default {
       }
     ],
     valid: false,
-    currentMenuId: null,
-    form: {
-      id: null,
-      parentId: null,
-      sort: 1,
-      name: null,
-      title: null,
-      type: 'catalog',
-      icon: null,
-      path: null,
-      component: 'Layout',
-      redirect: null,
-      keepAlive: null,
-      code: null,
-      hidden: false,
-      root: false,
-      noCache: false
-    }
+    readonly: true,
+    formMode: 'view',
+    formTitle: '菜单详情',
+    form: defaultMenuFormData
   }),
   computed: {
-    selection() {
-      if (this.active && this.active[0] && this.currentMenuId !== this.active[0].id) {
-        return this.active[0];
-      } else {
-        return false;
+  },
+  watch: {
+    active: {
+      handler(val) {
+        if (val && Array.isArray(val) && val.length > 0) {
+          this.form = val[0];
+        } else {
+          this.form = defaultMenuFormData;
+        }
       }
     }
   },
-  watch: {
-    selection: {
-      handler(val) {
-        if (val) {
-          this.form = val;
-          this.currentMenuId = this.active[0].id;
-        }
+  methods: {
+    updateFormTitle() {
+      if (this.readonly) {
+        this.formTitle = '菜单详情';
+      } else if (this.formMode === 'edit') {
+        this.formTitle = '编辑菜单';
       }
+    },
+    handleEditMode() {
+      this.readonly = false;
+      this.formMode = 'edit';
+      this.updateFormTitle();
+    },
+    handleCancelEditMode() {
+      this.readonly = true;
+      this.formMode = 'view';
+      this.updateFormTitle();
+    },
+    handleRemove() {
+      this.$confirm('确认删除菜单？', { title: '删除菜单' }).then(res => {
+      });
     }
   }
 };
